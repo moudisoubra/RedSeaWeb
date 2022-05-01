@@ -19,10 +19,10 @@ public class AssignRenderTexture : MonoBehaviour
 
     void Update()
     {
-        if (videoURL != "" && !player.isPlaying)
-        {
-            player.Play();
-        }
+        //if (videoURL != "" && !player.isPlaying)
+        //{
+        //    player.Play();
+        //}
     }
 
     public void AssignToChild()
