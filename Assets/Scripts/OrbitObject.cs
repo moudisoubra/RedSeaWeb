@@ -40,6 +40,8 @@ public class OrbitObject : MonoBehaviour
             GameObject ob = Instantiate(prefab);
             ob.transform.parent = transform;
             ob.transform.position = new Vector3(transform.position.x + x, transform.position.y + y, transform.position.z);
+            Debug.Log(videos[i]);
+            ob.GetComponent<AssignRenderTexture>().videoURL = videos[i];
             objects.Add(ob);
         }
     }

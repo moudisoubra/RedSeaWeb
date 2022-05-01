@@ -28,8 +28,6 @@ public class LoadImages : MonoBehaviour
             Directory.GetFiles(videofilesLocation, "*.mp4", SearchOption.AllDirectories)
             );
 
-        player.url = videos[0];
-        player.Play();
         gotAllVideos = true;
     }
 
