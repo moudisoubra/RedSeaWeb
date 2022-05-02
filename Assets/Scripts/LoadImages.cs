@@ -15,32 +15,37 @@ public class LoadImages : MonoBehaviour
     public bool gotAllVideos;
     public VideoPlayer player;
     public List<VideoPlayer> videoPlayers = new List<VideoPlayer>();
-    public OrbitObject ooScript;
+
+    public SO.Events.EventSO videosLoaded;
+    public SO.Events.EventSO imagesLoaded;
 
     public IEnumerator Start()
     {
-        yield return StartCoroutine(
-            "LoadAll",
-            Directory.GetFiles(filesLocation, "*.png", SearchOption.AllDirectories)
-        );
-        yield return StartCoroutine(
-            "LoadAllMP4",
-            Directory.GetFiles(videofilesLocation, "*.mp4", SearchOption.AllDirectories)
+        if (filesLocation != "")
+        {
+            yield return StartCoroutine(
+                "LoadAll",
+                Directory.GetFiles(filesLocation, "*.png", SearchOption.AllDirectories)
             );
 
-        gotAllVideos = true;
+            imagesLoaded.Raise();
+        }
+        if (videofilesLocation != "")
+        {
+
+            yield return StartCoroutine(
+                "LoadAllMP4",
+                Directory.GetFiles(videofilesLocation, "*.mp4", SearchOption.AllDirectories)
+            );
+            
+            videosLoaded.Raise();
+        }
+
     }
 
     public void Update()
     {
-        if (gotAllVideos)
-        {
-            //player.url = videos[0];
-            //player.Play();
-            ooScript.videos = videos;
-            ooScript.enabled = true;
-            gotAllVideos = false;
-        }
+
     }
 
     public IEnumerator LoadAll(string[] filePaths)

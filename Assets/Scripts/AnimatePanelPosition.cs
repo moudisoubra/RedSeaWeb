@@ -23,6 +23,10 @@ public class AnimatePanelPosition : MonoBehaviour
         {
             time += Time.deltaTime * speed;
             transform.localPosition = Vector3.Lerp(currentVector, goalVector, time);
+            if (transform.localPosition == goalVector)
+            {
+                this.enabled = false;
+            }
         }
     }
 
