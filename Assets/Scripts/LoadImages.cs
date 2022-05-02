@@ -15,7 +15,6 @@ public class LoadImages : MonoBehaviour
     public bool gotAllVideos;
     public VideoPlayer player;
     public List<VideoPlayer> videoPlayers = new List<VideoPlayer>();
-    public OrbitObject ooScript;
 
     public SO.Events.EventSO videosLoaded;
     public SO.Events.EventSO imagesLoaded;
@@ -46,14 +45,7 @@ public class LoadImages : MonoBehaviour
 
     public void Update()
     {
-        if (gotAllVideos)
-        {
-            //player.url = videos[0];
-            //player.Play();
-            ooScript.videos = videos;
-            ooScript.enabled = true;
-            gotAllVideos = false;
-        }
+
     }
 
     public IEnumerator LoadAll(string[] filePaths)
