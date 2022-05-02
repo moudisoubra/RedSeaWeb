@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AnimateLineRenderer : MonoBehaviour
 {
-    [SerializeField] private float animationDuration = 5f;
+    public float animationDuration = 5f;
 
     private LineRenderer lineRenderer;
     private Vector3[] linePoints;
@@ -25,6 +25,7 @@ public class AnimateLineRenderer : MonoBehaviour
 
     private IEnumerator AnimateLine()
     {
+        lineRenderer.enabled = true;
         float segmentDuration = animationDuration / pointsCount;
 
         for (int i = 0; i < pointsCount - 1; i++)
