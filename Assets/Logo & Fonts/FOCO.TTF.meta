@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4b99b50cf8aa30f4f897d8d85b645eb3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Foco
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c3b8b075021e5b24a9f0e1a77ec94632, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -57,6 +57,14 @@ public class OrbitObject : MonoBehaviour
         }
     }
 
+    public void SpinInClosedSpace()
+    {
+        for (int i = 0; i < objects.Count; i++)
+        {
+            
+        }
+    }
+
     //public void Orbit(GameObject obj, float speed)
     //{
     //    Vector3 pointT = new Vector3(5, 0, 0);
