@@ -11,6 +11,9 @@ public class VideoURL : MonoBehaviour
     public VideoPlayer player;
     public LoadImages liScript;
     public GameObject tabs;
+    public GameObject playerParent;
+    public GameObject lines;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +28,7 @@ public class VideoURL : MonoBehaviour
     }
     void CheckDimensions(string url)
     {
-        GameObject tempVideo = new GameObject("Temp video for " + url);
+        //GameObject tempVideo = new GameObject("Temp video for " + url);
         //VideoPlayer videoPlayer = tempVideo.AddComponent<VideoPlayer>();
         //videoPlayer.renderMode = VideoRenderMode.RenderTexture;
         //player.source = VideoSource.Url;
@@ -33,7 +36,7 @@ public class VideoURL : MonoBehaviour
         player.prepareCompleted += (VideoPlayer source) =>
         {
             Debug.Log("dimensions " + source.texture.width + " x " + source.texture.height); // do with these dimensions as you wish
-            Destroy(tempVideo);
+            //Destroy(tempVideo);
             RenderTexture rt = new RenderTexture(source.texture.width, source.texture.height, 0);
             player.targetTexture = rt;
             player.GetComponent<RawImage>().texture = rt;
@@ -49,7 +52,7 @@ public class VideoURL : MonoBehaviour
                 if (liScript.videos[i].Contains(nameOfVideo))
                 {
                     url = liScript.videos[i];
-                    CheckDimensions(url);
+                    //CheckDimensions(url);
                 }
             }
         }
@@ -62,7 +65,19 @@ public class VideoURL : MonoBehaviour
     {
         if (url != "")
         {
-            tabs.SetActive(false);
+            CheckDimensions(url);
+
+            if(lines != null)
+                lines.SetActive(false);
+
+            if (tabs != null)
+            {
+                tabs.SetActive(false);
+            }
+
+            if(playerParent != null)
+                playerParent.SetActive(true);
+
             player.url = url;
             player.gameObject.SetActive(true);
             player.Play();
