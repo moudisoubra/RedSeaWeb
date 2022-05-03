@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ChangeTabButtonColors : MonoBehaviour
 {
     public List<RawImage> buttonImages;
+    public List<GameObject> panels;
     public Color originalColor;
     public Color selectedColor;
     public int selectedButton;
@@ -30,10 +31,15 @@ public class ChangeTabButtonColors : MonoBehaviour
             if (i == selectedButton)
             {
                 buttonImages[i].color = selectedColor;
+                panels[i].GetComponent<ChangeGroupAlpha>().SetGroupAlpha1();
+                panels[i].GetComponent<ChangeGroupAlpha>().time = 1;
+                panels[i].SetActive(true);
             }
             else
             {
                 buttonImages[i].color = originalColor;
+                panels[i].transform.SetSiblingIndex(2);
+                panels[i].GetComponent<ChangeGroupAlpha>().SetFade();
             }
         }
     }

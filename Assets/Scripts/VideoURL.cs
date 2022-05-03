@@ -11,33 +11,37 @@ public class VideoURL : MonoBehaviour
     public VideoPlayer player;
     public LoadImages liScript;
     public GameObject tabs;
+    public GameObject playerParent;
+    public GameObject lines;
 
-    // Start is called before the first frame update
+    public SO.Events.EventSO playEvent;
+    public bool animated;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
     void CheckDimensions(string url)
     {
-        GameObject tempVideo = new GameObject("Temp video for " + url);
+        //GameObject tempVideo = new GameObject("Temp video for " + url);
         //VideoPlayer videoPlayer = tempVideo.AddComponent<VideoPlayer>();
         //videoPlayer.renderMode = VideoRenderMode.RenderTexture;
-        //player.source = VideoSource.Url;
+        player.source = VideoSource.Url;
         player.url = url;
         player.prepareCompleted += (VideoPlayer source) =>
         {
             Debug.Log("dimensions " + source.texture.width + " x " + source.texture.height); // do with these dimensions as you wish
-            Destroy(tempVideo);
+            //Destroy(tempVideo);
             RenderTexture rt = new RenderTexture(source.texture.width, source.texture.height, 0);
+            rt.name = transform.gameObject.name;
             player.targetTexture = rt;
             player.GetComponent<RawImage>().texture = rt;
         };
+        player.gameObject.SetActive(true);
         player.Prepare();
     }
     public void SetVideo()
@@ -49,7 +53,7 @@ public class VideoURL : MonoBehaviour
                 if (liScript.videos[i].Contains(nameOfVideo))
                 {
                     url = liScript.videos[i];
-                    CheckDimensions(url);
+                    //CheckDimensions(url);
                 }
             }
         }
@@ -62,10 +66,26 @@ public class VideoURL : MonoBehaviour
     {
         if (url != "")
         {
-            tabs.SetActive(false);
+            CheckDimensions(url);
+
+            if(lines != null)
+                lines.SetActive(false);
+
+            if (tabs != null)
+            {
+                tabs.SetActive(false);
+            }
+
+            if(playerParent != null)
+                playerParent.SetActive(true);
+
             player.url = url;
-            player.gameObject.SetActive(true);
             player.Play();
+            if (animated)
+            {
+                playEvent.Raise();
+            }
+            player.gameObject.SetActive(true);
         }
         else
         {
