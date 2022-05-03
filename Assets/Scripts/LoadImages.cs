@@ -27,7 +27,10 @@ public class LoadImages : MonoBehaviour
                 "LoadAll",
                 Directory.GetFiles(filesLocation, "*.png", SearchOption.AllDirectories)
             );
-
+            yield return StartCoroutine(
+                "LoadAll",
+                Directory.GetFiles(filesLocation, "*.jpg", SearchOption.AllDirectories)
+            );
             imagesLoaded.Raise();
         }
         if (videofilesLocation != "")

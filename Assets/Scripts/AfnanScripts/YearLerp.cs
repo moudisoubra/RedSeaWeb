@@ -23,6 +23,10 @@ public class YearLerp : MonoBehaviour
     public TextMeshProUGUI roomText;
     public TextMeshProUGUI inlandText;
 
+    public Color golden;
+    public TextMeshProUGUI year1;
+    public TextMeshProUGUI year2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,5 +80,16 @@ public class YearLerp : MonoBehaviour
         clicked = true;
         forward = !forward;
         backward = !backward;
+
+        if(forward)
+        {
+            year1.color = Color.grey;
+            year2.color = golden;
+        }
+        else
+        {
+            year1.color = golden;
+            year2.color = Color.grey;
+        }
     }
 }

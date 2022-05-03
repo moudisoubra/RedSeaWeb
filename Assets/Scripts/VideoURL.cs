@@ -14,7 +14,8 @@ public class VideoURL : MonoBehaviour
     public GameObject playerParent;
     public GameObject lines;
 
-
+    public SO.Events.EventSO playEvent;
+    public bool animated;
     void Start()
     {
         
@@ -40,6 +41,7 @@ public class VideoURL : MonoBehaviour
             player.targetTexture = rt;
             player.GetComponent<RawImage>().texture = rt;
         };
+        player.gameObject.SetActive(true);
         player.Prepare();
     }
     public void SetVideo()
@@ -79,6 +81,10 @@ public class VideoURL : MonoBehaviour
 
             player.url = url;
             player.Play();
+            if (animated)
+            {
+                playEvent.Raise();
+            }
             player.gameObject.SetActive(true);
         }
         else

@@ -31,13 +31,15 @@ public class ChangeTabButtonColors : MonoBehaviour
             if (i == selectedButton)
             {
                 buttonImages[i].color = selectedColor;
+                panels[i].GetComponent<ChangeGroupAlpha>().SetGroupAlpha1();
+                panels[i].GetComponent<ChangeGroupAlpha>().time = 1;
                 panels[i].SetActive(true);
             }
             else
             {
                 buttonImages[i].color = originalColor;
-                panels[i].SetActive(false);
-
+                panels[i].transform.SetSiblingIndex(2);
+                panels[i].GetComponent<ChangeGroupAlpha>().SetFade();
             }
         }
     }
