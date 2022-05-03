@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AnimateScale : MonoBehaviour
@@ -7,8 +8,9 @@ public class AnimateScale : MonoBehaviour
     public float targetScale;
     public float timeToLerp = 0.25f;
     float scaleModifier = 1;
-    public AnimatePanelPosition positioners;
+
     public bool animate;
+    public GameObject text;
     void Start()
     {
         //targetScale = transform.localScale.x;
@@ -34,6 +36,6 @@ public class AnimateScale : MonoBehaviour
 
         transform.localScale = startScale * endValue;
         scaleModifier = endValue;
-        positioners.animate = true;
+        text.SetActive(true);
     }
 }

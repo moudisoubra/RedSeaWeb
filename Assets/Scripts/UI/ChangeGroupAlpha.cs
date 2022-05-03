@@ -8,6 +8,8 @@ public class ChangeGroupAlpha : MonoBehaviour
     public float speed;
     public bool fade;
     public CanvasGroup group;
+    public List<GameObject> gameObjectsToTurnOff;
+    
     void Start()
     {
         group = GetComponent<CanvasGroup>();
@@ -17,9 +19,27 @@ public class ChangeGroupAlpha : MonoBehaviour
     {
         if (fade)
         {
+            for (int i = 0; i < gameObjectsToTurnOff.Count; i++)
+            {
+                gameObjectsToTurnOff[i].SetActive(false);
+            }
             time += Time.deltaTime * speed;
 
+            time = Mathf.Clamp01(time);
+
             group.alpha = time;
+
+            if (group.alpha == 0)
+            {
+                transform.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < gameObjectsToTurnOff.Count; i++)
+            {
+                gameObjectsToTurnOff[i].SetActive(true);
+            }
         }
     }
 

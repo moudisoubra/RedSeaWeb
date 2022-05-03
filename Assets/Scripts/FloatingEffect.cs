@@ -9,15 +9,32 @@ public class FloatingEffect : MonoBehaviour
     public float speed;
     public float tempVal;
     public Vector3 tempPos;
+    public bool active;
 
     void Start()
     {
-        tempVal = transform.localPosition.y;
     }
 
     void Update()
     {
-        tempPos.y = tempVal + amplitude * Mathf.Sin(speed * Time.time);
-        transform.localPosition = tempPos;
+        if (active)
+            Float();
+    }
+    
+    public void Float()
+    {
+        if (tempVal == 0)
+        {
+            tempVal = transform.localPosition.y;
+        }
+        if (tempPos == Vector3.zero)
+        {
+            tempPos = transform.localPosition;
+        }
+        else
+        {
+            tempPos.y = tempVal + amplitude * Mathf.Sin(speed * Time.time);
+            transform.localPosition = tempPos;
+        }
     }
 }

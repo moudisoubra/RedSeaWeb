@@ -49,11 +49,12 @@ public class AnimatePointsOnMap : MonoBehaviour
                 time += Time.deltaTime;
             }
         }
-        else if (index == pings.Count - 1 && Vector2.Distance(pings[pings.Count - 1].transform.position, lastPoint.transform.position) < 10)
+        else if (index == pings.Count - 1 && Vector2.Distance(pings[pings.Count - 1].transform.position, lastPoint.transform.position) < 15)
         {
             for (int i = 0; i < lines.Count; i++)
             {
                 lines[i].enabled = true;
+                pings[i].GetComponent<FloatingEffect>().active = true;
                 countDownForImages = true;
             }
         }

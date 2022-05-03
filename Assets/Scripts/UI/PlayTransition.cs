@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayTransition : MonoBehaviour
 {
+    public float timer;
     public float time;
     public float time1;
     public float time2;
@@ -14,6 +15,8 @@ public class PlayTransition : MonoBehaviour
     public bool altAnimate;
     public bool fade;
     public UITransitionEffect transitionScript;
+    public bool timed;
+    public float setTimer;
 
     void Start()
     {
@@ -22,6 +25,17 @@ public class PlayTransition : MonoBehaviour
 
     void Update()
     {
+
+        if (timed)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > setTimer)
+            {
+                animate = true;
+            }
+        }
+
         if (animate)
         {
             time += Time.deltaTime * speed;

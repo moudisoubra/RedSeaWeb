@@ -10,6 +10,8 @@ public class AnimateLineRenderer : MonoBehaviour
     private int pointsCount;
 
     public CanvasGroup cg;
+    public bool activate;
+    public bool needToWait;
 
     private void Start()
     {
@@ -26,8 +28,16 @@ public class AnimateLineRenderer : MonoBehaviour
         {
             linePoints[i] = lineRenderer.GetPosition(i);
         }
-
+            if(!needToWait)
             StartCoroutine(AnimateLine());
+        else
+        {
+            if(activate)
+            StartCoroutine(AnimateLine());
+
+        }
+
+
         if (cg != null)
             StartCoroutine(RunAlpha(cg));
     }

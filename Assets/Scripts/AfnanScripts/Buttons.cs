@@ -35,6 +35,7 @@ public class Buttons : MonoBehaviour
                 goldenButtons[i].SetActive(false);
                 fadedButtons[i].SetActive(true);
                 mapIcons[i].SetActive(false);
+                mapIcons[i].transform.localScale = Vector3.zero;
 
             }
         }

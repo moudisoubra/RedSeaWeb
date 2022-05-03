@@ -13,6 +13,7 @@ public class AnimatePanelPosition : MonoBehaviour
     public bool animate;
     public bool fade;
     public bool returnObject;
+    public bool turnOff;
     public RawImage imageToFade;
     public GameObject childToSet;
     void Start()
@@ -42,6 +43,11 @@ public class AnimatePanelPosition : MonoBehaviour
                 transform.gameObject.SetActive(false);
                 transform.localPosition = currentVector;
                 returnObject = false;
+            }
+
+            if (transform.localPosition == goalVector && turnOff)
+            {
+                transform.gameObject.SetActive(false);
             }
         }
     }

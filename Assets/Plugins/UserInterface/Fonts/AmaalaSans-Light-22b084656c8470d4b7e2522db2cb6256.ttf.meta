@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 8fc3bd010a569433eb4c3152fc901d11
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Amaala Sans
+  fontNames:
+  - Amaala Sans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 39085ab5f563d4cfa9d3cc948bf0fce9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
