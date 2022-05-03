@@ -14900,7 +14900,7 @@ MonoBehaviour:
   - {fileID: 1148794956}
   animate: 0
   time: 0
-  speed: 1
+  speed: 0.8
   checkTextVisible: {fileID: 1148794958}
 --- !u!1 &1156528163
 GameObject:
