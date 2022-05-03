@@ -8,6 +8,7 @@ public class CheckTextVisible : MonoBehaviour
     public Camera cam;
     public bool visible;
     public TextReveal trScript;
+    public PixelatedAnim anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,10 @@ public class CheckTextVisible : MonoBehaviour
         if (visible && trScript)
         {
             trScript.reveal = true;
+        }
+        if (visible && anim)
+        {
+            anim.animate = true;
         }
     }
 }
