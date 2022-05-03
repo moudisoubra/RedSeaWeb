@@ -25,7 +25,9 @@ public class YearLerp : MonoBehaviour
 
     public Color golden;
     public TextMeshProUGUI year1;
+    public Image year1Fill;
     public TextMeshProUGUI year2;
+    public Image year2Fill;
 
     // Start is called before the first frame update
     void Start()
@@ -81,15 +83,19 @@ public class YearLerp : MonoBehaviour
         forward = !forward;
         backward = !backward;
 
-        if(forward)
+        if (forward)
         {
             year1.color = Color.grey;
             year2.color = golden;
+            year1Fill.GetComponent<LerpFillBar>().speed = -5;
+            year2Fill.GetComponent<LerpFillBar>().speed = 5;
         }
         else
         {
             year1.color = golden;
             year2.color = Color.grey;
+            year2Fill.GetComponent<LerpFillBar>().speed = -5;
+            year1Fill.GetComponent<LerpFillBar>().speed = 5;
         }
     }
 }
