@@ -16,7 +16,7 @@ public class LerpColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        rImage = GetComponent<RawImage>();
     }
 
     // Update is called once per frame

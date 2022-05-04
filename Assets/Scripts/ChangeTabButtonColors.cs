@@ -15,6 +15,7 @@ public class ChangeTabButtonColors : MonoBehaviour
     public Color originalColor;
     public Color selectedColor;
     public int selectedButton;
+    public float speed;
 
     void Start()
     {
@@ -35,14 +36,14 @@ public class ChangeTabButtonColors : MonoBehaviour
         {
             if (i == selectedButton)
             {
-                images[i].GetComponent<LerpFillBar>().speed = 5;
+                images[i].GetComponent<LerpFillBar>().speed = speed;
                 panels[i].GetComponent<ChangeGroupAlpha>().SetGroupAlpha1();
                 panels[i].GetComponent<ChangeGroupAlpha>().time = 1;
                 panels[i].SetActive(true);
             }
             else
             {
-                images[i].GetComponent<LerpFillBar>().speed = -5;
+                images[i].GetComponent<LerpFillBar>().speed = -speed;
                 panels[i].transform.SetSiblingIndex(2);
                 panels[i].GetComponent<ChangeGroupAlpha>().SetFade();
             }

@@ -29,12 +29,16 @@ public class Buttons : MonoBehaviour
                 goldenButtons[i].SetActive(true);
                 fadedButtons[i].SetActive(false);
                 mapIcons[i].SetActive(true);
+                mapIcons[i].GetComponent<LerpColor>().hovered = true;
             }
             else
             {
                 goldenButtons[i].SetActive(false);
                 fadedButtons[i].SetActive(true);
                 mapIcons[i].SetActive(false);
+                mapIcons[i].GetComponent<LerpColor>().hovered = false;
+                mapIcons[i].GetComponent<LerpColor>().time1 = 0;
+                mapIcons[i].GetComponent<LerpColor>().time2 = 0;
                 mapIcons[i].transform.localScale = Vector3.zero;
 
             }
