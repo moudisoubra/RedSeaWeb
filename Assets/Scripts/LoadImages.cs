@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using DanielLochner.Assets.SimpleScrollSnap;
+using TMPro;
 
 public class LoadImages : MonoBehaviour
 {
@@ -21,15 +22,19 @@ public class LoadImages : MonoBehaviour
     public SO.Events.EventSO videosLoaded;
     public SO.Events.EventSO imagesLoaded;
 
+    public string titleText;
+    public TextMeshProUGUI title;
     public SimpleScrollSnap snapScript;
     public GameObject contentParent;
     public GameObject content;
+    public GameObject content2;
     public GameObject rawImage;
     public bool imgsLoaded;
     public bool imgsLoadedPreviously;
     public bool vidsLoaded;
     public bool vidsLoadedPreviously;
-    private bool activated;
+    public bool activated;
+    public bool sls;
 
     public LoadImages externalLoad;
     public bool externallyLoaded = false;
@@ -76,6 +81,17 @@ public class LoadImages : MonoBehaviour
 
     public void Update()
     {
+        if (imgsLoaded && content2 && activated)
+        {
+            for (int i = 0; i < images2.Count; i++)
+            {
+                RawImage ri = Instantiate(rawImage).GetComponent<RawImage>();
+                ri.texture = images2[i];
+                ri.transform.SetParent(content2.transform);
+                ri.transform.position = content2.transform.position;
+            }
+            snapScript.Setup();
+        }
         if (imgsLoaded && content && activated)
         {
             for (int i = 0; i < images.Count; i++)
@@ -86,10 +102,15 @@ public class LoadImages : MonoBehaviour
                 ri.transform.position = content.transform.position;
             }
             snapScript.Setup();
-            snapScript.transform.parent.transform.parent.gameObject.SetActive(true);
+            if (!sls)
+            {
+                title.text = titleText;
+                snapScript.transform.parent.transform.parent.gameObject.SetActive(true);
+            }
             imgsLoaded = false;
             activated = false;
         }
+
     }
 
     public void SetContent()

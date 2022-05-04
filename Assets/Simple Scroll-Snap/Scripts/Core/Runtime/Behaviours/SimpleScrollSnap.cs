@@ -336,6 +336,10 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             }
             releaseSpeed = Velocity.magnitude;
         }
+        public void SetStartingPanel(int i)
+        {
+            startingPanel = i;
+        }
 
         public void Setup()
         {

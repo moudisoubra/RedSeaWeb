@@ -18,12 +18,15 @@ public class VideoURL : MonoBehaviour
     public bool animated;
     void Start()
     {
-        
+        SetVideo();
     }
 
     void Update()
     {
-        
+        if (url == "")
+        {
+            SetVideo();
+        }
     }
     void CheckDimensions(string url)
     {

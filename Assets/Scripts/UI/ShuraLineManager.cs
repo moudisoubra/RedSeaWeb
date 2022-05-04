@@ -9,6 +9,7 @@ public class ShuraLineManager : MonoBehaviour
     public float timeDuration;
     public float speed;
     public int index;
+    public bool stop = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class ShuraLineManager : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime * speed;
-        if (time > timeDuration)
+        if (time > timeDuration && !stop)
         {
             lineRenderers[index].enabled = true;
             if (lineRenderers[index].GetComponent<LoadImages>())
@@ -33,7 +34,23 @@ public class ShuraLineManager : MonoBehaviour
 
         if (lineRenderers[lineRenderers.Count - 1].isActiveAndEnabled)
         {
-            this.enabled = false;
+            stop = true;
+        }
+    }
+
+    public void TurnLinesOff()
+    {
+        for (int i = 0; i < lineRenderers.Count; i++)
+        {
+            lineRenderers[i].GetComponent<LineRenderer>().enabled = false;
+        }
+    }
+
+    public void TurnLinesOn()
+    {
+        for (int i = 0; i < lineRenderers.Count; i++)
+        {
+            lineRenderers[i].GetComponent<LineRenderer>().enabled = true;
         }
     }
 }
