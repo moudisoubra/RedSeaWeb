@@ -13,6 +13,7 @@ public class CheckTextVisible : MonoBehaviour
     public PixelatedAnim anim;
     public TextAnimator taScript;
     public AnimateLineRenderer lrAnimator;
+    public ShuraLineManager lineManager;
     public bool changeAlpha;
     public float time;
     public float speed;
@@ -30,6 +31,9 @@ public class CheckTextVisible : MonoBehaviour
 
         if(GetComponent<AnimateLineRenderer>())
             lrAnimator = GetComponent<AnimateLineRenderer>();
+
+        if(GetComponent<ShuraLineManager>())
+            lineManager = GetComponent<ShuraLineManager>();
 
         rt = GetComponent<RectTransform>();
         cam = Camera.main;
@@ -62,6 +66,10 @@ public class CheckTextVisible : MonoBehaviour
             lrAnimator.gameObject.SetActive(true);
             lrAnimator.enabled = true;
             lrAnimator.activate = true;
+        }
+        if (lineManager && visible)
+        {
+            lineManager.enabled = true;
         }
     }
 

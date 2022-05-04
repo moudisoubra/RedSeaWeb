@@ -10,6 +10,7 @@ public class ShuraLineManager : MonoBehaviour
     public float speed;
     public int index;
     public bool stop = false;
+    public CheckTextVisible ctv;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class ShuraLineManager : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime * speed;
-        if (time > timeDuration && !stop)
+        if (time > timeDuration && !stop && (ctv != null && ctv.visible))
         {
             lineRenderers[index].enabled = true;
             if (lineRenderers[index].GetComponent<LoadImages>())
