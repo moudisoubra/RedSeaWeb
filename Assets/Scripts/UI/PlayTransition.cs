@@ -41,6 +41,9 @@ public class PlayTransition : MonoBehaviour
             time += Time.deltaTime * speed;
 
             transitionScript.effectFactor = time;
+
+            if(time < 0)
+                transform.gameObject.SetActive(false);
         }
 
         if (altAnimate)
@@ -48,6 +51,9 @@ public class PlayTransition : MonoBehaviour
             time += Time.deltaTime * altSpeed;
 
             transitionScript.effectFactor = time;
+
+            if (time < 0)
+                transform.gameObject.SetActive(false);
         }
     }
 
