@@ -42,7 +42,10 @@ public class CheckTextVisible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        visible = rt.IsFullyVisibleFrom(cam);
+        if (rt.IsFullyVisibleFrom(cam))
+        {
+            visible = true;
+        }
 
         if (visible && trScript)
         {
