@@ -11,6 +11,8 @@ public class ShuraLineManager : MonoBehaviour
     public int index;
     public bool stop = false;
     public CheckTextVisible ctv;
+    public Gradient normal;
+    public Gradient noAlpha;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +45,7 @@ public class ShuraLineManager : MonoBehaviour
     {
         for (int i = 0; i < lineRenderers.Count; i++)
         {
-            lineRenderers[i].GetComponent<LineRenderer>().enabled = false;
+            lineRenderers[i].GetComponent<LineRenderer>().colorGradient = noAlpha;
         }
     }
 
@@ -51,7 +53,7 @@ public class ShuraLineManager : MonoBehaviour
     {
         for (int i = 0; i < lineRenderers.Count; i++)
         {
-            lineRenderers[i].GetComponent<LineRenderer>().enabled = true;
+            lineRenderers[i].GetComponent<LineRenderer>().colorGradient = normal;
         }
     }
 }

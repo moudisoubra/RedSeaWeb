@@ -31,7 +31,8 @@ public class ChangeGroupAlpha : MonoBehaviour
 
             if (group.alpha == 0)
             {
-                transform.gameObject.SetActive(false);
+                transform.SetAsFirstSibling();
+                //transform.gameObject.SetActive(false);
             }
         }
         else
