@@ -86,6 +86,7 @@ public class LoadImages : MonoBehaviour
             for (int i = 0; i < images2.Count; i++)
             {
                 RawImage ri = Instantiate(rawImage).GetComponent<RawImage>();
+                ri.GetComponent<GoToPanel>().ssScript = snapScript;
                 ri.texture = images2[i];
                 ri.transform.SetParent(content2.transform);
                 ri.transform.position = content2.transform.position;
@@ -97,6 +98,7 @@ public class LoadImages : MonoBehaviour
             for (int i = 0; i < images.Count; i++)
             {
                 RawImage ri = Instantiate(rawImage).GetComponent<RawImage>();
+                ri.GetComponent<GoToPanel>().ssScript = snapScript;
                 ri.texture = images[i];
                 ri.transform.SetParent(content.transform);
                 ri.transform.position = content.transform.position;

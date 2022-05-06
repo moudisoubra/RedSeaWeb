@@ -17,6 +17,8 @@ public class AnimatePointsOnMap : MonoBehaviour
     public bool test;
     public bool next;
     public bool countDownForImages = false;
+    public float timer;
+    public bool startTime;
     void Start()
     {
         for (int i = 0; i < pings.Count; i++)
@@ -30,6 +32,10 @@ public class AnimatePointsOnMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (startTime)
+        {
+            timer += Time.deltaTime;
+        }
         if (test)
         {
             StartCoroutine(PlacePing(pings[0], originalPositions[0], newPositions[0]));
@@ -37,7 +43,6 @@ public class AnimatePointsOnMap : MonoBehaviour
         }
         if (next && index < pings.Count - 1)
         {
-
             if (time / duration >= 0.5f)
             {
                 index++;
@@ -49,7 +54,7 @@ public class AnimatePointsOnMap : MonoBehaviour
                 time += Time.deltaTime;
             }
         }
-        else if (index == pings.Count - 1 && Vector2.Distance(pings[pings.Count - 1].transform.position, lastPoint.transform.position) < 15)
+        else if (index == pings.Count - 1 && (Vector2.Distance(pings[pings.Count - 1].transform.position, lastPoint.transform.position) < 15 || timer > 3))
         {
             for (int i = 0; i < lines.Count; i++)
             {
@@ -58,7 +63,10 @@ public class AnimatePointsOnMap : MonoBehaviour
                 countDownForImages = true;
             }
         }
-
+        if (index == pings.Count - 1)
+        {
+            startTime = true;
+        }
         if (countDownForImages)
         {
             imageTime += Time.deltaTime;
