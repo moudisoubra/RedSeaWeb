@@ -33,5 +33,9 @@ public class ActivateChildren : MonoBehaviour
         {
             children[index].GetComponent<AnimatePanelPosition>().enabled = true;
         }
+        if (!children[index].GetComponent<LerpColor>().isActiveAndEnabled)
+        {
+            children[index].GetComponent<LerpColor>().enabled = true;
+        }
     }
 }

@@ -9,6 +9,7 @@ public class VIdeoPlayerFinished : MonoBehaviour
     public double length;
     public double time;
     public GameObject tabs;
+    public SO.Events.EventSO removeVideo;
 
     void Start()
     {
@@ -24,7 +25,8 @@ public class VIdeoPlayerFinished : MonoBehaviour
         {
             Debug.Log("Video Player Finished");
             tabs.SetActive(true);
-            transform.gameObject.SetActive(false);
+            removeVideo.Raise();
+            //transform.gameObject.SetActive(false);
         }
     }
 }

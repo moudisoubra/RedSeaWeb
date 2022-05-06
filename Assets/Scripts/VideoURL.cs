@@ -14,33 +14,37 @@ public class VideoURL : MonoBehaviour
     public GameObject playerParent;
     public GameObject lines;
 
-
-    // Start is called before the first frame update
+    public SO.Events.EventSO playEvent;
+    public bool animated;
     void Start()
     {
-        
+        SetVideo();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (url == "")
+        {
+            SetVideo();
+        }
     }
     void CheckDimensions(string url)
     {
         //GameObject tempVideo = new GameObject("Temp video for " + url);
         //VideoPlayer videoPlayer = tempVideo.AddComponent<VideoPlayer>();
         //videoPlayer.renderMode = VideoRenderMode.RenderTexture;
-        //player.source = VideoSource.Url;
+        player.source = VideoSource.Url;
         player.url = url;
         player.prepareCompleted += (VideoPlayer source) =>
         {
             Debug.Log("dimensions " + source.texture.width + " x " + source.texture.height); // do with these dimensions as you wish
             //Destroy(tempVideo);
             RenderTexture rt = new RenderTexture(source.texture.width, source.texture.height, 0);
+            rt.name = transform.gameObject.name;
             player.targetTexture = rt;
             player.GetComponent<RawImage>().texture = rt;
         };
+        player.gameObject.SetActive(true);
         player.Prepare();
     }
     public void SetVideo()
@@ -79,8 +83,12 @@ public class VideoURL : MonoBehaviour
                 playerParent.SetActive(true);
 
             player.url = url;
-            player.gameObject.SetActive(true);
             player.Play();
+            if (animated)
+            {
+                playEvent.Raise();
+            }
+            player.gameObject.SetActive(true);
         }
         else
         {
